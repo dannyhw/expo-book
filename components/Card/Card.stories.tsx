@@ -17,3 +17,11 @@ export const Default: Story = {
     children: <Text className="text-center text-white">Hello World</Text>,
   },
 };
+
+export const Pressable: Story = {
+  args: {
+    children: <Text className="text-center text-white">Hello World</Text>,
+    onPress: () => console.log("Pressed"),
+    className: "w-96 h-96",
+  },
+};

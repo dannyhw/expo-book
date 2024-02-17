@@ -1,7 +1,9 @@
 {
   "tailwindCSS.experimental.classRegex": [
-    ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    "\\S*[Cc]lass[nN]ame\\S* ?[:=] [\"'`](.*)[\"'`]"
   ],
+
   "typescript.tsdk": "node_modules/typescript/lib",
   "tailwindCSS.classAttributes": [
     "class",
