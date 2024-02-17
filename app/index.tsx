@@ -1,30 +1,35 @@
-import { Stack, Link } from 'expo-router';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Link, Stack } from "expo-router";
+import { Pressable, Text, View } from "react-native";
+
+import { storyStore } from "~/utils/StoryStore";
 
 export default function Page() {
   return (
-    <View className={styles.container}>
-      <Stack.Screen options={{ title: 'Overview' }} />
-      <View className={styles.main}>
-        <View>
-          <Text className={styles.title}>Hello World</Text>
-          <Text className={styles.subtitle}>This is the first page of your app.</Text>
+    <View className="flex-1 p-6">
+      <Stack.Screen options={{ title: "Overview" }} />
+      <View className="max-w-[960] flex-1 justify-between">
+        <View className="items-center">
+          {Object.keys(storyStore).map((storyId) => {
+            const { title, name } = storyStore[storyId];
+            return (
+              <Link
+                key={storyId}
+                href={{
+                  pathname: "/storybook/[storyId]",
+                  params: { storyId },
+                }}
+                asChild
+              >
+                <Pressable className="group mb-3 rounded-md">
+                  <Text className="text-center text-lg font-semibold text-blue-600 underline group-active:text-blue-800">
+                    {title} - {name}
+                  </Text>
+                </Pressable>
+              </Link>
+            );
+          })}
         </View>
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
-          <TouchableOpacity className={styles.button}>
-            <Text className={styles.buttonText}>Show Details</Text>
-          </TouchableOpacity>
-        </Link>
       </View>
     </View>
   );
 }
-
-const styles = {
-  button: 'items-center bg-indigo-500 rounded-[28px] shadow-md p-4',
-  buttonText: 'text-white text-lg font-semibold text-center',
-  container: 'flex-1 p-6',
-  main: 'flex-1 max-w-[960] justify-between',
-  title: 'text-[64px] font-bold',
-  subtitle: 'text-4xl text-gray-700',
-};

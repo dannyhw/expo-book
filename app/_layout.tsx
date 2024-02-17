@@ -1,7 +1,15 @@
-import '../global.css';
+import { Stack } from "expo-router";
+import { SafeAreaView } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import { Stack } from 'expo-router';
+import "../global.css";
 
 export default function Layout() {
-  return <Stack />;
+  return (
+    <GestureHandlerRootView className="flex-1">
+      <SafeAreaView className="flex-1">
+        <Stack />
+      </SafeAreaView>
+    </GestureHandlerRootView>
+  );
 }
